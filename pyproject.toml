@@ -1,10 +1,12 @@
 [tool.poetry]
 name = "nemusicapi"
-version = "0.0.1"
+version = "0.0.2a1"
 description = "A Netsase music api"
 authors = ["yuyi2439"]
-license = "Apache License"
+license = "Apache-2.0"
 readme = "README.md"
+homepage = "https://github.com/yuyi2439/NeteaseMusicApi"
+repository = "https://github.com/yuyi2439/NeteaseMusicApi"
 
 [tool.poetry.dependencies]
 python = "^3.9"
