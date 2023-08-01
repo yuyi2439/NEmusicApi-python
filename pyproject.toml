@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "neteasemusicapi"
+name = "nemusicapi"
 version = "0.0.1"
-description = "A netsase music api"
+description = "A Netsase music api"
 authors = ["yuyi2439"]
 license = "Apache License"
 readme = "README.md"
@@ -10,7 +10,6 @@ readme = "README.md"
 python = "^3.9"
 requests = "^2.31.0"
 pycryptodome = "^3.18.0"
-
 
 [build-system]
 requires = ["poetry-core"]
