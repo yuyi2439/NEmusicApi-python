@@ -10,4 +10,5 @@ __all__ = [
     'EncodeType'
 ]
 
-__version__ = '0.0.5'
+# 大版本版本号
+__version__ = '0.1.0'
