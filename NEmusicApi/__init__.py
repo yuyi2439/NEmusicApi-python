@@ -9,3 +9,5 @@ __all__ = [
     'QualityLevel',
     'EncodeType'
 ]
+
+__version__ = '0.0.5'
