@@ -15,23 +15,22 @@ from nemusicapi.type import QualityLevel, EncodeType
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-def aes_encrypt(text, key):
+def aes_encrypt(raw_text: str, raw_key: str):
+    key = raw_key.encode('utf-8')  # 将密钥转换为utf-8格式
     iv = '0102030405060708'.encode('utf-8')  # iv偏移量
-    text = text.encode('utf-8')  # 将明文转换为utf-8格式
-    pad = 16 - len(text) % 16
-    text = text + (pad * chr(pad)).encode('utf-8')  # 明文需要转成二进制，且可以被16整除
-    key = key.encode('utf-8')  # 将密钥转换为utf-8格式
     encryptor = AES.new(key, AES.MODE_CBC, iv)  # 创建一个AES对象
-    encrypt_text = encryptor.encrypt(text)  # 加密
-    encrypt_text = base64.b64encode(encrypt_text)  # base4编码转换为byte字符串
+    _text = raw_text.encode('utf-8')  # 将明文转换为utf-8格式
+    pad = 16 - len(_text) % 16
+    text = _text + (pad * chr(pad)).encode('utf-8')  # 明文需要转成二进制，且可以被16整除
+    _encrypt_text = encryptor.encrypt(text)  # 加密
+    encrypt_text = base64.b64encode(_encrypt_text)  # base64编码转换为byte字符串
     return encrypt_text.decode('utf-8')
 
 
-# RSA加密获得encSeckey
-def rsa_encrypt(str, key, f):
-    str = str[::-1]  # 随机字符串逆序排列
-    str = bytes(str, 'utf-8')  # 将随机字符串转换为byte类型的数据
-    sec_key = int(codecs.encode(str, encoding='hex'), 16) ** int(key, 16) % int(f, 16)  # RSA加密
+def rsa_encrypt(raw_text: str, key: str, f: str):
+    _text = raw_text[::-1]  # 随机字符串逆序排列
+    text = bytes(_text, 'utf-8')  # 将随机字符串转换为byte类型的数据
+    sec_key = int(codecs.encode(text, encoding='hex'), 16) ** int(key, 16) % int(f, 16)  # RSA加密
     return format(sec_key, 'x').zfill(256)  # RSA加密后字符串长度为256，不足的补x
 
 
