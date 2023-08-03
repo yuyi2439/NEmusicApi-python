@@ -8,8 +8,8 @@ import requests
 from Crypto.Cipher import AES
 import urllib3
 
-from NEmusicApi.exception import NoDownloadDirException
-from NEmusicApi.type import QualityLevel, EncodeType
+from nemusicapi.exception import NoDownloadDirException
+from nemusicapi.type import QualityLevel, EncodeType
 
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)

@@ -1,6 +1,6 @@
-from NEmusicApi.api import RawApi, Api
-from NEmusicApi.type import QualityLevel, EncodeType
-from NEmusicApi.exception import NoDownloadDirException
+from nemusicapi.api import RawApi, Api
+from nemusicapi.type import QualityLevel, EncodeType
+from nemusicapi.exception import NoDownloadDirException
 
 __all__ = [
     'RawApi',
