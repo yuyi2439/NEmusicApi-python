@@ -14,7 +14,7 @@ class QualityLevel(Enum):
 
 class EncodeType(Enum):
     """
-    aac文件小，flac音质好
+    越靠下文件越大，音质越好
     """
     mp3 = 'mp3'
     aac = 'aac'

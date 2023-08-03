@@ -47,7 +47,7 @@ class RawApi:
                  cookie=''
                  ):
         self.cookie = cookie
-        
+
 
     def _get_data(self, url: str, raw_params) -> dict:
         _params, encSecKey = get_params(json.dumps(raw_params))
@@ -75,7 +75,8 @@ class RawApi:
         url = 'https://music.163.com/weapi/cloudsearch/get/web'
         res = self._get_data(url, params)
         return res
-    
+
+
     def get_song_file_data(self, song_id: int, *, level: QualityLevel, encodeType: EncodeType):
         url = f'https://music.163.com/weapi/song/enhance/player/url/v1'
         params = {
@@ -98,9 +99,9 @@ class Api(RawApi):
         if download_dir:
             if not os.path.exists(download_dir):
                 os.makedirs(download_dir)
-    
-    
-    def refresh_song_data(self, raw_song_name: str) -> tuple[int, str] | None:
+
+
+    def get_song_data(self, raw_song_name: str) -> tuple[int, str] | None:
         res = self.search_music(raw_song_name)
         if res['result']['songCount'] == 0:
             return
@@ -109,7 +110,10 @@ class Api(RawApi):
         return song_id, song_name
 
 
-    def get_song_download_data(self, song_id: int, *, level=QualityLevel.standard, encodeType=EncodeType.flac) -> tuple[str, EncodeType] | None:
+    def get_song_download_data(self, song_id: int, *,
+                               level=QualityLevel.standard,
+                               encodeType=EncodeType.flac
+                               ) -> tuple[str, EncodeType] | None:
         res = self.get_song_file_data(song_id, level=level, encodeType=encodeType)
         if res['data'][0]['url'] is None:
             return

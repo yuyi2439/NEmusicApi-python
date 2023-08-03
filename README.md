@@ -33,7 +33,7 @@ def main(raw_song_name: str):
         return
     song_url, song_type = res
     
-    file_name = f'{song_name}_{level.value}.{song_type}'
+    file_name = f'{song_name}_{level.value}.{song_type.value}'
     if not os.path.exists(os.path.join(download_dir, file_name)):
         api.download_song(song_url, file_name)
 
