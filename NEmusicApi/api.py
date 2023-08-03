@@ -1,4 +1,5 @@
 import json
+import os
 import random
 import base64
 import codecs
@@ -39,21 +40,24 @@ def get_params(raw_params: str):
     return params, encSecKey
 
 
-class Api:
-    def __init__(self, cookie=''):
+class RawApi:
+    def __init__(self, *,
+                 cookie=''
+                 ):
         self.cookie = cookie
+        
 
     def _get_data(self, url: str, raw_params) -> dict:
-        params, encSecKey = get_params(json.dumps(raw_params))
-        _params = {
-            "params": params,
+        _params, encSecKey = get_params(json.dumps(raw_params))
+        params = {
+            "params": _params,
             "encSecKey": encSecKey
         }
         headers = {
             'Cookie': self.cookie
         }
-        res = requests.post(url=url, params=_params, headers=headers, verify=False)    # 向服务器发送请求
-        return res.json()  # 返回结果
+        res = requests.post(url=url, params=params, headers=headers, verify=False)
+        return res.json()
 
 
     def search_music(self, song_name: str, *, type=1, offset=0, total='true', limit=20):
@@ -83,3 +87,46 @@ class Api:
         }
         res = self._get_data(url, params)
         return res
+
+
+class Api(RawApi):
+    def __init__(self, *, 
+                 cookie='',
+                 download_dir='./'
+                 ):
+        super().__init__(cookie=cookie)
+        
+        self.download_dir = download_dir
+        if not os.path.exists(download_dir):
+            os.makedirs(download_dir)
+    
+    
+    def refresh_song_data(self, raw_song_name: str) -> tuple[int, str] | None:
+        res = self.search_music(raw_song_name)
+        if res['result']['songCount'] == 0:
+            return
+        song_id = res['result']['songs'][0]['id']
+        song_name = res['result']['songs'][0]['name']
+        return song_id, song_name
+
+
+    def get_song_file_data(self, song_id: int) -> tuple[str, str] | None:
+        res = self.get_song_url(song_id, level='hires')
+        if res['data'][0]['url'] is None:
+            return
+        song_url = res['data'][0]['url']
+        song_type = res['data'][0]['type']
+        return song_url, song_type
+
+
+    def download_song(self, song_id: int):
+        res = self.get_song_file_data(song_id)
+        if res is None:
+            return False
+        song_url, song_type = res
+        
+        file_path = os.path.join(self.download_dir, f'{song_id}.{song_type}')
+        
+        with open(file_path, 'wb') as f:
+            f.write(requests.get(song_url).content)
+        return True
