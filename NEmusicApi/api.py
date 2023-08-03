@@ -130,16 +130,11 @@ class Api(RawApi):
         return song_url, song_type
 
 
-    def download_song(self, song_id: int):
+    def download_song(self, song_url: str, file_name: str):
         if self.download_dir == None:
             raise NoDownloadDirException
         
-        res = self.get_song_file_data(song_id)
-        if res is None:
-            return False
-        song_url, song_type = res
-        
-        file_path = os.path.join(self.download_dir, f'{song_id}.{song_type}')
+        file_path = os.path.join(self.download_dir, file_name)
         
         with open(file_path, 'wb') as f:
             f.write(requests.get(song_url).content)
