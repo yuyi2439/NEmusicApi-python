@@ -109,13 +109,13 @@ class Api(RawApi):
         return song_id, song_name
 
 
-    def get_song_download_data(self, song_id: int, *, level=QualityLevel.standard, encodeType=EncodeType.flac) -> tuple[str, QualityLevel] | None:
+    def get_song_download_data(self, song_id: int, *, level=QualityLevel.standard, encodeType=EncodeType.flac) -> tuple[str, EncodeType] | None:
         res = self.get_song_file_data(song_id, level=level, encodeType=encodeType)
         if res['data'][0]['url'] is None:
             return
         song_url = res['data'][0]['url']
         song_type = res['data'][0]['type']
-        return song_url, QualityLevel(song_type)
+        return song_url, EncodeType(song_type)
 
 
     def download_song(self, song_url: str, file_name: str):
