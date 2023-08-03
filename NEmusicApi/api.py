@@ -85,7 +85,7 @@ class RawApi:
         res = self._get_data(url, params)
         return res
     
-    def get_song_url(self, song_id: int, level: QualityLevel, *, encodeType='flac'):
+    def get_song_file_data(self, song_id: int, level: QualityLevel, *, encodeType='flac'):
         """
         encodeType: aac flac
         """
@@ -121,8 +121,8 @@ class Api(RawApi):
         return song_id, song_name
 
 
-    def get_song_file_data(self, song_id: int, level = QualityLevel.standard) -> tuple[str, str] | None:
-        res = self.get_song_url(song_id, level)
+    def get_song_download_data(self, song_id: int, level = QualityLevel.standard) -> tuple[str, str] | None:
+        res = self.get_song_file_data(song_id, level)
         if res['data'][0]['url'] is None:
             return
         song_url = res['data'][0]['url']
