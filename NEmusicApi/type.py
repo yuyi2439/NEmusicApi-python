@@ -16,5 +16,6 @@ class EncodeType(Enum):
     """
     aac文件小，flac音质好
     """
+    mp3 = 'mp3'
     aac = 'aac'
     flac = 'flac'
