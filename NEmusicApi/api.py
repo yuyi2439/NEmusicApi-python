@@ -92,13 +92,14 @@ class RawApi:
 class Api(RawApi):
     def __init__(self, *, 
                  cookie='',
-                 download_dir='./'
+                 download_dir=None
                  ):
         super().__init__(cookie=cookie)
-        
         self.download_dir = download_dir
-        if not os.path.exists(download_dir):
-            os.makedirs(download_dir)
+        
+        if download_dir:
+            if not os.path.exists(download_dir):
+                os.makedirs(download_dir)
     
     
     def refresh_song_data(self, raw_song_name: str) -> tuple[int, str] | None:
@@ -120,6 +121,9 @@ class Api(RawApi):
 
 
     def download_song(self, song_id: int):
+        if self.download_dir == None:
+            return
+        
         res = self.get_song_file_data(song_id)
         if res is None:
             return False

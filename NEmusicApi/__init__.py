@@ -1,1 +1,6 @@
-from api import RawApi, Api
+from NEmusicApi.api import RawApi, Api
+
+__all__ = [
+    'RawApi',
+    'Api'
+]
