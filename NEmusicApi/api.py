@@ -43,7 +43,7 @@ class Api:
     def __init__(self, cookie=''):
         self.cookie = cookie
 
-    def get_data(self, url: str, raw_params) -> dict:
+    def _get_data(self, url: str, raw_params) -> dict:
         params, encSecKey = get_params(json.dumps(raw_params))
         _params = {
             "params": params,
@@ -67,7 +67,7 @@ class Api:
             'limit': limit
         }
         url = 'https://music.163.com/weapi/cloudsearch/get/web'
-        res = self.get_data(url, params)
+        res = self._get_data(url, params)
         return res
     
     def get_song_url(self, song_id: int, *, level='standard', encodeType='flac'):
@@ -81,5 +81,5 @@ class Api:
             'level': level,
             'encodeType': encodeType
         }
-        res = self.get_data(url, params)
+        res = self._get_data(url, params)
         return res
