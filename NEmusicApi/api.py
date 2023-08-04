@@ -47,11 +47,19 @@ class Api(BaseApi):
         return song_url, EncodeType(song_type)
 
 
-    def download_song(self, song_url: str, file_name: str):
-        if self.download_dir == None:
+    def download_song(self, song_url: str, file_name: str, *, 
+                      download_dir: str|None = None
+                      ):
+        """
+        如果没有设置`download_dir`，将使用创建api时设置的值
+        """
+        if download_dir == None:
+            download_dir = self.download_dir
+        
+        if download_dir == None:
             raise NoDownloadDirException
         
-        file_path = os.path.join(self.download_dir, file_name)
+        file_path = os.path.join(download_dir, file_name)
         
         with open(file_path, 'wb') as f:
             f.write(requests.get(song_url).content)

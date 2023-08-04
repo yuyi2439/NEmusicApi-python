@@ -10,7 +10,7 @@ api = BaseApi()
 class TestApi(unittest.TestCase):
     def test_search_music(self):
         try:
-            res = api.search_music('', limit=1)
+            api.search_music('', limit=1)
             self.assertTrue(False)
         except NoSongNameException:
             self.assertTrue(True)
