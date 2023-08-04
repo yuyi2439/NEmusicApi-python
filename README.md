@@ -22,10 +22,11 @@ api = Api(cookie=cookie, download_dir=download_dir)
 
 
 def main(raw_song_name: str):
-    res = api.refresh_song_data(raw_song_name)
+    res = api.get_song_data(raw_song_name, limit=1)
     if res is None:
         return
-    song_id, song_name = res
+    song_id = list(res.keys())[0]
+    song_name = list(res.values())[0]
     
     level = QualityLevel.hires
     res = api.get_song_download_data(song_id, level=level)
