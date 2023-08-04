@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nemusicapi"
-version = "0.1.1a6"
+version = "0.1.1a7"
 description = "A Netsase music api"
 authors = ["yuyi2439"]
 license = "Apache-2.0"
