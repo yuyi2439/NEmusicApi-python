@@ -46,3 +46,7 @@ if __name__ == '__main__':
 ## 注意事项
 * 创建api的时候，不输入`cookie`或者cookie对应的账号没有vip，都有可能导致获取信息不完整，需要自己测试
 * 创建api的时候，不输入`download_dir`，在使用`download_song`方法的时候会raise异常
+
+## 单元测试
+1. `poetry run python .\test\test_api.py`
+2. `poetry run python .\test\test_base_api.py`
