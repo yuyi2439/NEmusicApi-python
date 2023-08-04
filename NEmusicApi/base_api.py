@@ -4,16 +4,19 @@ import codecs
 import json
 
 import requests
+import urllib3
 from Crypto.Cipher import AES
 
 from nemusicapi.type import QualityLevel, EncodeType
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 
 def aes_encrypt(raw_text: str, raw_key: str):
-    key = raw_key.encode('utf-8')  # 将密钥转换为utf-8格式
+    key = raw_key.encode('utf-8')
+    _text = raw_text.encode('utf-8')
     iv = '0102030405060708'.encode('utf-8')  # iv偏移量
     encryptor = AES.new(key, AES.MODE_CBC, iv)  # 创建一个AES对象
-    _text = raw_text.encode('utf-8')  # 将明文转换为utf-8格式
     pad = 16 - len(_text) % 16
     text = _text + (pad * chr(pad)).encode('utf-8')  # 明文需要转成二进制，且可以被16整除
     _encrypt_text = encryptor.encrypt(text)  # 加密
