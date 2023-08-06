@@ -3,11 +3,10 @@ import unittest
 from nemusicapi.base_api import BaseApi
 from nemusicapi.exception import NoSongNameException
 
-
 api = BaseApi()
 
 
-class TestApi(unittest.TestCase):
+class TestBaseApi(unittest.TestCase):
     def test_search_music(self):
         try:
             api.search_music('', limit=1)
