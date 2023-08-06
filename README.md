@@ -1,4 +1,4 @@
-# NeteaseMusicApi
+# NEmusicApi
 ### 一个网易云音乐的Api框架
 
 ### 本项目使用Apache2.0开源协议
