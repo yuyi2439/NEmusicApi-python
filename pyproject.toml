@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "nemusicapi"
 version = "0.1.1a8"
-description = "A Netsase music api"
+description = "一个网易云音乐的Api框架"
 authors = ["yuyi2439"]
 license = "Apache-2.0"
 readme = "README.md"
