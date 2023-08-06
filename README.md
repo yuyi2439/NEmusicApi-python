@@ -1,4 +1,4 @@
-# NeteaseMusicApi
+# NEmusicApi
 ### 一个网易云音乐的Api框架
 
 ### 本项目使用Apache2.0开源协议
@@ -59,4 +59,11 @@ if __name__ == '__main__':
 ## 注意事项
 - 创建api的时候，不输入`cookie`或者cookie对应的账号没有vip，都有可能导致获取信息不完整，需要自己测试
 - 创建api的时候，不输入`download_dir`，在使用`download_song`方法的时候会raise异常
+<<<<<<< HEAD
   
+=======
+
+## 单元测试
+1. `poetry run python .\test\test_api.py`
+2. `poetry run python .\test\test_base_api.py`
+>>>>>>> 45134f4e5be70b561d35210b77775909c598dbb2
