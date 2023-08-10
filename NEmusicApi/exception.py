@@ -1,6 +1,6 @@
-class NoDownloadDirException(Exception):
-    pass
+class NoDownloadDir(Exception):
+    """没有设置download_dir"""
 
 
-class NoSongNameException(Exception):
-    pass
+class NoSongName(Exception):
+    """song_name为空"""

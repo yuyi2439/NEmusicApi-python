@@ -3,9 +3,9 @@ import os
 import requests
 import urllib3
 
-from nemusicapi.type import QualityLevel, EncodeType
-from nemusicapi.base_api import BaseApi
-from nemusicapi.exception import NoDownloadDirException
+from .type import QualityLevel, EncodeType
+from .baseapi import BaseApi
+from .exception import NoDownloadDir
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -57,7 +57,7 @@ class Api(BaseApi):
             download_dir = self.download_dir
         
         if download_dir == None:
-            raise NoDownloadDirException
+            raise NoDownloadDir
         
         file_path = os.path.join(download_dir, file_name)
         

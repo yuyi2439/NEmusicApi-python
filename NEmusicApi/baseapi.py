@@ -7,8 +7,8 @@ import requests
 import urllib3
 from Crypto.Cipher import AES
 
-from nemusicapi.type import QualityLevel, EncodeType
-from nemusicapi.exception import NoSongNameException
+from .type import QualityLevel, EncodeType
+from .exception import NoSongName
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -62,7 +62,7 @@ class BaseApi:
 
     def search_music(self, song_name: str, *, type=1, offset=0, total='true', limit=20):
         if song_name == '':
-            raise NoSongNameException
+            raise NoSongName
         params = {
             'hlpretag': '<span class=\'s-fc7\'>',
             'hlposttag': '</span>',

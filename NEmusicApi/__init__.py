@@ -1,12 +1,12 @@
-from nemusicapi.api import Api
-from nemusicapi.type import QualityLevel, EncodeType
-from nemusicapi.base_api import BaseApi
-from nemusicapi.exception import NoDownloadDirException
+from .api import Api
+from .type import QualityLevel, EncodeType
+from .baseapi import BaseApi
+from .exception import NoDownloadDir
 
 __all__ = [
     'BaseApi',
     'Api',
-    'NoDownloadDirException',
+    'NoDownloadDir',
     'QualityLevel',
     'EncodeType'
 ]
