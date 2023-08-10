@@ -4,3 +4,7 @@ class NoDownloadDir(Exception):
 
 class NoSongName(Exception):
     """song_name为空"""
+
+
+class SongIdError(Exception):
+    """song_id错误"""
