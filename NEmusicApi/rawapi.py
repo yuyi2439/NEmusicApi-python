@@ -43,7 +43,7 @@ def get_params(raw_params: str):
     return params, encSecKey
 
 
-class BaseApi:
+class RawApi:
     def __init__(
         self, *,
         cookie=''
@@ -51,7 +51,7 @@ class BaseApi:
         self.cookie = cookie
 
     def _get_data(
-        self, url: str, raw_params
+        self, url: str, raw_params: dict
     ) -> dict:
         _params, encSecKey = get_params(json.dumps(raw_params))
         params = {
@@ -86,8 +86,8 @@ class BaseApi:
 
     def get_song_file_data(
         self, song_id: int, *,
-        level: QualityLevel,
-        encodeType: EncodeType
+        level: QualityLevel = QualityLevel.standard,
+        encodeType: EncodeType = EncodeType.flac
     ):
         url = f'https://music.163.com/weapi/song/enhance/player/url/v1'
         params = {

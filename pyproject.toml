@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "nemusicapi"
-version = "0.1.1"
+version = "0.1.1a1"
 description = "一个网易云音乐的Api框架"
 authors = ["yuyi2439"]
 license = "Apache-2.0"
 readme = "README.md"
-homepage = "https://github.com/yuyi2439/NEmusicApi"
-repository = "https://github.com/yuyi2439/NEmusicApi"
+homepage = "https://github.com/yuyi2439/NEmusicApi-python"
+repository = "https://github.com/yuyi2439/NEmusicApi-python"
 
 [tool.poetry.dependencies]
 python = "^3.9"

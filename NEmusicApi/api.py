@@ -4,13 +4,13 @@ import requests
 import urllib3
 
 from .type import QualityLevel, EncodeType
-from .baseapi import BaseApi
+from .rawapi import RawApi
 from .exception import NoDownloadDir, SongIdError
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-class Api(BaseApi):
+class Api(RawApi):
     def __init__(
         self, *,
         cookie='',
