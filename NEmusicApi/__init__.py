@@ -1,13 +1,13 @@
 from .api import Api
 from .type import QualityLevel, EncodeType
 from .rawapi import RawApi
-from .exception import NoDownloadDir
+from .exception import NoDownloadDirErr
 
 
 __all__ = [
     'RawApi',
     'Api',
-    'NoDownloadDir',
+    'NoDownloadDirErr',
     'QualityLevel',
     'EncodeType',
 ]

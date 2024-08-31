@@ -5,7 +5,7 @@ import urllib3
 
 from .type import QualityLevel, EncodeType
 from .rawapi import RawApi
-from .exception import NoDownloadDir, SongIdError
+from .exception import NoDownloadDirErr, SongIdErrorErr
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -49,7 +49,7 @@ class Api(RawApi):
             encodeType=encodeType
         )
         if res['data'][0]['url'] is None:
-            raise SongIdError(f"Song {song_id} not found")
+            raise SongIdErrorErr(f"Song {song_id} not found")
         song_url = res['data'][0]['url']
         song_type = res['data'][0]['type']
         return song_url, EncodeType(song_type)
@@ -65,7 +65,7 @@ class Api(RawApi):
             download_dir = self.download_dir
 
         if download_dir == '':
-            raise NoDownloadDir
+            raise NoDownloadDirErr
 
         file_path = os.path.join(download_dir, file_name)
 

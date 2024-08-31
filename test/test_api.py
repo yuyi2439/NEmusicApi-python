@@ -1,7 +1,7 @@
 import unittest
 
 from nemusicapi.api import Api
-from nemusicapi.exception import NoDownloadDirException
+from nemusicapi.exception import NoSongNameErr
 
 api = Api()
 
@@ -15,7 +15,7 @@ class TestApi(unittest.TestCase):
         try:
             api.download_song('', '')
             self.assertTrue(False)
-        except NoDownloadDirException:
+        except NoSongNameErr:
             self.assertTrue(True)
 
 

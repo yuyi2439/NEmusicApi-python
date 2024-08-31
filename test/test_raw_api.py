@@ -1,17 +1,17 @@
 import unittest
 
-from nemusicapi.base_api import BaseApi
-from nemusicapi.exception import NoSongNameException
+from nemusicapi.rawapi import RawApi
+from nemusicapi.exception import NoSongNameErr
 
-api = BaseApi()
+raw_api = RawApi()
 
 
 class TestBaseApi(unittest.TestCase):
     def test_search_music(self):
         try:
-            api.search_music('', limit=1)
+            raw_api.search_music('', limit=1)
             self.assertTrue(False)
-        except NoSongNameException:
+        except NoSongNameErr:
             self.assertTrue(True)
 
 

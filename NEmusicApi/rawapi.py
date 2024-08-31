@@ -8,7 +8,7 @@ import urllib3
 from Crypto.Cipher import AES
 
 from .type import QualityLevel, EncodeType
-from .exception import NoSongName
+from .exception import NoSongNameErr
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -70,7 +70,7 @@ class RawApi:
         type=1, offset=0, total='true', limit=20
     ):
         if song_name == '':
-            raise NoSongName
+            raise NoSongNameErr
         params = {
             'hlpretag': '<span class=\'s-fc7\'>',
             'hlposttag': '</span>',

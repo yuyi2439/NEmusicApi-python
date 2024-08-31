@@ -10,4 +10,3 @@ suite.addTest(unittest.defaultTestLoader.discover(current_path, pattern='test_*.
 
 runner = unittest.TextTestRunner()
 runner.run(suite)
-

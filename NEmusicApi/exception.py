@@ -1,10 +1,10 @@
-class NoDownloadDir(Exception):
+class NoDownloadDirErr(Exception):
     """没有设置download_dir"""
 
 
-class NoSongName(Exception):
+class NoSongNameErr(Exception):
     """song_name为空"""
 
 
-class SongIdError(Exception):
+class SongIdErrorErr(Exception):
     """song_id错误"""
